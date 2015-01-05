@@ -20,8 +20,12 @@ module AppNexus
         update({"token" => auth_response.token,
                  "expires_in" => 3600})
       else
-        #@TODO real exception
-        raise Exception("Bad Auth")
+        if auth_response.error?
+          msg = auth_response.to_json
+        else
+          msg = "Unknown"
+        end
+        raise OpenAPI::Exceptions::AuthError, msg
       end
     end
   end
