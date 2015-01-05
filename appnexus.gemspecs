@@ -1,9 +1,12 @@
 require 'rake'
+require 'date'
+require File.join(File.dirname(__FILE__), 'lib/appnexus/version')
 
 Gem::Specification.new do |s|
   s.name = 'appnexus'
-  s.version = '0.1.0'
-  s.date = '2015-01-05'
+  s.version = ::AppNexus::VERSION
+  s.licenses = ['MIT']
+  s.date = Date.today.to_s
   s.summary = 'A Ruby wrapper for the AppNexus API'
   s.description = 'appnexus is a Ruby library for interacting with the AppNexus API.'
   s.homepage = 'http://github.com/antlegrand/openapi-appnexus'

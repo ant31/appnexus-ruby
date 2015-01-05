@@ -17,8 +17,7 @@ AppNexus.password = "jamdEal3F!"
 AppNexus.site  = "api.appnexus.com"
 AppNexus.use_ssl  = true
 AppNexus.logger = Logger.new(STDOUT)
-AppNexus::Routes.generate
-
-
 OpenAPI.cache = Dalli::Client.new('localhost:11211', { :namespace => "openapi", :compress => false })
-OpenAPI.logger = AppeNexus.logger
+OpenAPI.logger = AppNexus.logger
+
+AppNexus::Routes.generate
