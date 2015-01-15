@@ -2,12 +2,13 @@ module AppNexus
   module Params
     class << self
       def pagination()
-        return {:page => Integer, :pageSize => Integer}
+        {:start_element => Integer, :num_elements => Integer}
       end
 
       def sorting()
         {:sortBy => String, :sortDirection => String}
       end
+
       def date()
         return {:dateFrom => OpenAPI::Utils::Date, :dateTo =>  OpenAPI::Utils::Date}
       end
@@ -42,7 +43,16 @@ module AppNexus
           ## AUTH
           match "auth", "app_nexus/handlers/app_response#auth_response_model", :auth, via: :post, :body => AppNexus::Models::Auth, :to_json => {root: true}, :extra => {:skip_auth => true}
           ## Reports
-          match "report", "app_nexus/handlers/app_response#report_model", :report, via: :get, :params => {:advertiser_id => Integer}
+          match "report", "app_nexus/handlers/app_response#report_model", :getReports, via: :get, :params => P.create(P.pagination, {:advertiser_id => Integer})
+          ## Advertisers
+          match "advertiser", "app_nexus/handlers/app_response#response_model", :getAdvertisers, via: :get, :params => P.create(P.pagination)
+          match "advertiser", "app_nexus/handlers/app_response#response_model", :getAdvertiser, via: :get, :params => {:id => Integer}
+
+          # CRUD CALLS
+          match "GET", "app_nexus/handlers/app_response#response_model", :GET, via: :get, :params => P.create(P.pagination)
+          match "DELETE", "app_nexus/handlers/app_response#response_model", :DELETE, via: :get
+          match "PUT", "app_nexus/handlers/app_response#response_model", :PUT, via: :get
+          match "POST", "app_nexus/handlers/app_response#response_model", :POST, via: :post
         end
       end
     end
