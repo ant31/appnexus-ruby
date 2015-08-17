@@ -4,7 +4,8 @@ module AppNexus
       include SimpleModel::Association
       auto_define_attributes false
       auto_find_relations true
-      override_attributes  :code,
+      override_attributes  :id,
+      :code,
       :state,
       :short_name,
       :description,
