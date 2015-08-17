@@ -8,6 +8,7 @@ module AppNexus
     autoload :Response, "models/response"
     autoload :DbgInfo, "models/dbg_info"
     autoload :Advertiser, "models/advertiser"
+    autoload :Segment, "models/segment"
     class AppNexusBase < OpenAPI::Models::Base
       one :dbg_info, :class_name => AppNexus::Models::DbgInfo
       define_attributes :count, :start_elements, :num_elements, :status

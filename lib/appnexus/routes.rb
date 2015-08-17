@@ -47,7 +47,9 @@ module AppNexus
           ## Advertisers
           match "advertiser", "app_nexus/handlers/app_response#response_model", :getAdvertisers, via: :get, :params => P.create(P.pagination)
           match "advertiser", "app_nexus/handlers/app_response#response_model", :getAdvertiser, via: :get, :params => {:id => Integer}
-
+          # Segements
+          match "segment", "app_nexus/handlers/app_response#response_model", :getSegments, via: :get, :params => P.create(P.pagination)
+          match "segment", "app_nexus/handlers/app_response#response_model", :getSegment, via: :get, :params => {:id => Integer}
           # CRUD CALLS
           match "GET", "app_nexus/handlers/app_response#response_model", :GET, via: :get, :params => P.create(P.pagination)
           match "DELETE", "app_nexus/handlers/app_response#response_model", :DELETE, via: :get
