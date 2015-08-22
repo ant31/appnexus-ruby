@@ -9,6 +9,13 @@ module AppNexus
     autoload :DbgInfo, "models/dbg_info"
     autoload :Advertiser, "models/advertiser"
     autoload :Segment, "models/segment"
+
+    class Base < Hashie::Mash
+      include ActiveModel::Conversion
+      include ActiveModel::Serializers::JSON
+      include ActiveModel::Serializers::Xml
+    end
+
     class AppNexusBase < OpenAPI::Models::Base
       one :dbg_info, :class_name => AppNexus::Models::DbgInfo
       define_attributes :count, :start_elements, :num_elements, :status

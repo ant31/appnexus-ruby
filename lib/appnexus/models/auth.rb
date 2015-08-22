@@ -1,8 +1,10 @@
 module AppNexus
   module Models
-    class Auth < AppNexusBase
-      include SimpleModel::Association
-      define_attributes :username, :password
+
+    class Auth < AppNexus::Models::Base
+      include Virtus.model
+      attribute :username, String
+      attribute :password, String
     end
   end
 end

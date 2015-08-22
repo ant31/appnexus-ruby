@@ -1,28 +1,38 @@
 module AppNexus
   module Models
-    class Segment < AppNexusBase
-      include SimpleModel::Association
-      auto_define_attributes false
-      auto_find_relations true
-      override_attributes  :id,
-      :code,
-      :state,
-      :short_name,
-      :description,
-      :member_id,
-      :category,
-      :price,
-      :expire_minutes,
-      :enable_rm_piggyback,
-      :max_usersync_pixels,
-      :advertiser_id,
-      :last_modified,
-      :provider,
-      :parent_segment_id,
-      :piggyback_pixels,
-      :querystring_mapping,
-      :querystring_mapping_key_value
-
+    module SegmentAttr
+      include Virtus.module
+      attribute       :code, String
+      attribute       :state, String
+      attribute       :short_name, String
+      attribute       :description, String
+      attribute       :member_id, Integer
+      attribute       :category, String
+      attribute       :price, Float
+      attribute       :expire_minutes, Integer
+      attribute       :enable_rm_piggyback, String
+      attribute       :max_usersync_pixels, String
+      attribute       :advertiser_id, Integer
+      attribute       :last_modified, Time
+      attribute       :provider, String
+      attribute       :parent_segment_id, Integer
+      attribute       :piggyback_pixels, String
+      attribute       :querystring_mapping, String
+      attribute       :querystring_mapping_key_value, String
     end
+
+    module SegmentGet
+      include Virtus.module
+      attribute       :id, Integer
+    end
+
+    class Segment < AppNexus::Models::Base
+      include SegmentAttr, SegmentGet
+    end
+
+    class SegmentUpdate
+      include SegmentAttr
+    end
+
   end
 end

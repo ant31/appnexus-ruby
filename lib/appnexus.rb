@@ -1,5 +1,6 @@
+require 'hashie'
 require 'dalli'
-
+require 'virtus'
 require 'openapi'
 require 'appnexus/auth_token'
 require 'appnexus/models'
@@ -12,6 +13,7 @@ require 'appnexus/client'
 ## MOVE TO APP ""
 require 'logger'
 AppNexus::Models::AppNexusBase.include_root_in_json = true
+AppNexus::Models::Base.include_root_in_json = true
 AppNexus.user = "2t.antoine"
 AppNexus.password = "jamdEal3F!"
 AppNexus.site  = "api.appnexus.com"

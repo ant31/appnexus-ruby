@@ -15,7 +15,7 @@ module AppNexus
 
     def new_auth_token()
       auth = AppNexus::Models::Auth.new(username: AppNexus.user, password: AppNexus.password)
-      auth_response = AppNexus::Client.auth(auth)
+      auth_response = AppNexus::Client.auth(body: {auth: auth}.to_json(root: false))
       if auth_response.success? && !auth_response.error?
         update({"token" => auth_response.token,
                  "expires_in" => 3600})

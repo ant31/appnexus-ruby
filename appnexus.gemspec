@@ -18,6 +18,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'json', [ ">=1.8.1" ]
   s.add_dependency 'openapi', [ ">=0" ]
   s.add_dependency 'dalli', [ "~> 2.7" ]
+  s.add_dependency 'virtus', [ "~> 1" ]
 
   s.add_development_dependency 'rspec'
   s.add_development_dependency 'fakeweb'

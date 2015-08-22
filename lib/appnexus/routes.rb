@@ -41,15 +41,15 @@ module AppNexus
       def generate(client=AppNexus::Client)
         OpenAPI::Route.draw(client) do
           ## AUTH
-          match "auth", "app_nexus/handlers/app_response#auth_response_model", :auth, via: :post, :options => {:skip_auth => true}
+          match "auth", "app_nexus/handlers/app_response#hashie", :auth, via: :post, body: AppNexus::Models::Auth, :options => {:skip_auth => true}
           ## Reports
           match "report", "app_nexus/handlers/app_response#report_model", :getReports, via: :get, :params => P.create(P.pagination, {:advertiser_id => Integer})
           ## Advertisers
           match "advertiser", "app_nexus/handlers/app_response#response_model", :getAdvertisers, via: :get, :params => P.create(P.pagination)
           match "advertiser", "app_nexus/handlers/app_response#response_model", :getAdvertiser, via: :get, :params => {:id => Integer}
           # Segements
-          match "segment", "app_nexus/handlers/app_response#response_model", :getSegments, via: :get, :params => P.create(P.pagination)
-          match "segment", "app_nexus/handlers/app_response#response_model", :getSegment, via: :get, :params => {:id => Integer}
+          match "segment", "app_nexus/handlers/app_response#segment_models", :getSegments, via: :get, :params => P.create(P.pagination)
+          match "segment", "app_nexus/handlers/app_response#segment_model", :getSegment, via: :get, :params => {:id => Integer}
           match "segment", "app_nexus/handlers/app_response#response_model", :createSegment, :via => :post
           # CRUD CALLS
           match "GET", "app_nexus/handlers/app_response#response_model", :GET, via: :get, :params => P.create(P.pagination)
