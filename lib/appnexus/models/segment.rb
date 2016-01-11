@@ -1,7 +1,7 @@
 module AppNexus
   module Models
-    module SegmentAttr
-      include Virtus.module
+    module Segment
+      include         Virtus.module
       attribute       :code, String
       attribute       :state, String
       attribute       :short_name, String
@@ -19,20 +19,20 @@ module AppNexus
       attribute       :piggyback_pixels, String
       attribute       :querystring_mapping, String
       attribute       :querystring_mapping_key_value, String
-    end
 
-    module SegmentGet
-      include Virtus.module
-      attribute       :id, Integer
-    end
+      class GET
+        include AppNexus::Models::Segment
+        attribute       :id, Integer
+      end
 
-    class Segment < AppNexus::Models::Base
-      include SegmentAttr, SegmentGet
-    end
+      class PUT
+        include AppNexus::Models::Segment
+      end
 
-    class SegmentUpdate
-      include SegmentAttr
-    end
+      class POST
+        include AppNexus::Models::Segment
+      end
 
+    end
   end
 end
